@@ -74,7 +74,7 @@ def download_installer():
     else: 
         print('failure')
         print(f'Response Code: {resp_msg.status_code} ({resp_msg.reason})')
-        exit('Script excetion aborted.')
+        exit('Script execution aborted.')
     
     return
 
@@ -96,7 +96,6 @@ def installer_ok(installer_data, expected_sha256):
 
     sha256_match = (installer_sha256 == expected_sha256)
     
-
     if not sha256_match:
         print('Error: SHA-256 of VLC installer not as expected')
         return sha256_match
@@ -134,7 +133,7 @@ def run_installer(installer_path):
     """    
     # TODO: Step 5
     # Hint: See example code in lab instructions entitled "Running the VLC Installer"
-    print('Installing VLC... ', end='')
+    print('Installing VLC...', end='')
 
     subprocess.run([installer_path, '/L=1033', '/S'], shell=True)
     print('complete')
@@ -151,7 +150,9 @@ def delete_installer(installer_path):
     print(f'Deleting the VLC installer from {installer_path}...', end='')
     if os.path.exists(installer_path) and os.path.isfile(installer_path):
         os.remove(installer_path)
-    print('complete')
+        print('success')
+    else: 
+        print('failure')
 
     return
 
